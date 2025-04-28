@@ -124,8 +124,10 @@ def get_weather(city):
         url = f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={WEATHER_API_KEY}&units=metric"
         response = requests.get(url)
         data = response.json()
-
         if data["cod"] != "200":
+            print(f"Respnse is not OK: {data}")
+            logging.error(f"Response is not OK: {data}")
+
             return "Could not retrieve weather info."
 
         forecast = ""
